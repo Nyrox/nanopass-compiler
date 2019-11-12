@@ -1,0 +1,148 @@
+// Features
+- reference types
+- garbage collection
+- stack based vm
+
+// Supported data types (for the programmer)
+- integers
+- float
+- string
+- structs
+- fixed sized array
+- linked list
+- function ptr
+
+// Internal data types
+- integer
+- float
+- function ptr
+- struct
+    - type tag
+    - size
+    - memory offset
+
+// Brainstorming IR
+https://en.wikipedia.org/wiki/List_of_CIL_instructions
+http://cadmium.x9c.fr/distrib/caml-instructions.pdf
+
+
+// Syntax
+List<int> * int -> List<int>
+fn push (list, v) {
+    list :: v
+}
+
+fn main () {
+    let list = List::new ()
+
+    let l2 = push list 5
+
+}
+
+//VM impl
+
+type MemOffset = u32
+
+#[repr(C)]
+struct Header {
+    type_tag: u16
+    size: u16
+}
+
+// block header layout 32 bits
+16 bits, allocation size information
+8 bits, variant type information
+8 bit, empty
+
+
+// instruction layout
+u32, simple enum
+
+
+struct Block {
+    header: Header
+    ptr: MemOffset
+}
+
+struct ListNode<T> {
+    value: Block<T> | null,
+    next: Block<ListNode<T>>,
+}
+
+
+main.
+    // empty list
+
+    void                       // next
+    void                       // value
+    push HEADER[Array<T>]      // block header
+    make_block2
+
+    // after this stack contains 1 block
+
+
+    // list with one element
+
+    // next ptr (sentinel)
+    void
+    void
+    push HEADER[Array<T>]
+    make_block2
+
+
+    // value block
+    consti 5125
+    make_block1
+    // create list
+    push HEADER[Array<T>]
+    make_block2
+
+
+    // now stack contains 2 blocks
+
+
+// this is actually the language
+struct ListNode {
+    value: int
+    next: ListNode
+}
+
+
+
+ListNode {
+    value: Block { 5125 },
+    next: ListNode {
+        value: void,
+        next: void,
+    }
+}
+
+
+
+// implementing list
+
+type List<T> = T * List<T> | Empty
+
+
+// examples
+
+fn main =
+    printfn "%i" (5 + 5)
+
+call "printfn" 
+    - StaticString "%i"
+    - Expr
+        - Binary Add
+            - Integer 5
+            - Integer 5
+
+.data
+    0: "%i"
+
+.main
+    static_block .L0
+    const_i32 5
+    const_i32 5
+    add_i32
+
+    call_builtIn "printfn"

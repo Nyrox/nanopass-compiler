@@ -1,0 +1,98 @@
+// Instructions
+push_const val
+pop
+make_block size
+
+// Ideas
+jump
+branching
+call
+call external
+math
+bitwise operations
+push local to top of stack
+
+
+
+
+// What we have
+The stack, as in the the VM stack
+The callstack, which is where parameters and locals go, and return addresses
+
+//
+let add a b =
+  a + b
+
+add 2 5
+
+
+
+.add
+    addi
+    ret
+
+.main
+    const 2
+    const 5
+    call .add
+
+
+
+let x = 5
+let y = 2
+
+let z = 3
+
+add x y
+
+.main
+    const 2
+    store 0
+
+    const 5
+    store 1
+
+    load 0
+    load 1
+    call .add
+
+.main
+    const 2 // x
+    const 5 // y
+    const 3 // z
+
+    load 0
+    load 1
+    add
+
+
+call -> 
+    push ret_addr
+    push current_stack_base
+    mov current_stack_top into stack_base register
+    jmp to function
+
+ret ->
+    pop ret_value into tmp
+    mov current_stack_base into stack_top
+    pop previous_stack_base into stack_base register
+    pop ret_addr and jump
+    push tmp
+
+fn ret() {
+    let tmp = pop();
+    self.st = self.sb;
+    self.sb = pop();
+    self.ip = pop();
+    push(tmp);
+}
+
+sb register: stack base
+st register: magic stack top
+
+load 0 -> load $st + 0
+
+
+call -> push_callstack ret, push_callstack params, jmp func
+ret -> pop_callstack, jmp
+

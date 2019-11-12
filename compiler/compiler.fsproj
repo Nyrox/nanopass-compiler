@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src/Parse.fs" />
+    <Compile Include="src/Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+  <Reference Include="NanopassTP">
+    <HintPath>../nanopass-tp/bin/Debug/netstandard2.0/nanopass-tp.dll</HintPath>
+  </Reference>
+    </ItemGroup>
+</Project>
