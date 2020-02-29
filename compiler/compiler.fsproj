@@ -7,11 +7,14 @@
 
   <ItemGroup>
     <Compile Include="src/Parse.fs" />
+	<Compile Include="src/Language.fs" />
+	<Compile Include="src/LanguageSimple.fs" />
+	<Compile Include="src/Japanese.fs" />
     <Compile Include="src/Program.fs" />
   </ItemGroup>
   <ItemGroup>
-  <Reference Include="NanopassTP">
+  <!-- <Reference Include="NanopassTP">
     <HintPath>../nanopass-tp/bin/Debug/netstandard2.0/nanopass-tp.dll</HintPath>
-  </Reference>
+  </Reference> -->
     </ItemGroup>
 </Project>
